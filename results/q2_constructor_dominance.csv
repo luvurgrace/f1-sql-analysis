@@ -1,0 +1,25 @@
+decade,rank_in_decade,constructor_name,races,wins,win_rate_pct
+1950,1,Ferrari,73,30,41.10
+1950,2,Maserati,70,9,12.86
+1950,3,Cooper,32,2,6.25
+1960,1,Lotus-Climax,56,22,39.29
+1960,2,Lotus-Ford,34,11,32.35
+1960,3,Brabham-Repco,33,8,24.24
+1970,1,"Team Lotus",133,35,26.32
+1970,2,Ferrari,141,37,26.24
+1970,3,Tyrrell,134,21,15.67
+1980,1,McLaren,155,56,36.13
+1980,2,Williams,155,37,23.87
+1980,3,Renault,91,14,15.38
+1990,1,Williams,162,61,37.65
+1990,2,McLaren,162,43,26.54
+1990,3,Ferrari,162,28,17.28
+2000,1,Ferrari,174,85,48.85
+2000,2,McLaren,174,41,23.56
+2000,3,Renault,140,20,14.29
+2010,1,Mercedes,198,93,46.97
+2010,2,"Red Bull",198,56,28.28
+2010,3,Ferrari,198,28,14.14
+2020,1,"Red Bull",142,68,47.89
+2020,2,Mercedes,142,37,26.06
+2020,3,McLaren,142,22,15.49
