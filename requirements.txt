@@ -1,0 +1,6 @@
+pandas
+sqlalchemy
+pymysql
+matplotlib
+python-dotenv
+jupyter

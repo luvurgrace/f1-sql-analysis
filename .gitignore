@@ -1,0 +1,16 @@
+# Secrets
+.env
+
+# Data
+data/*
+!data/.gitkeep
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
