@@ -1,10 +1,16 @@
 ## Q1 Findings
 
-Michael Schumacher in the 2000s (45.9% win rate) and Max Verstappen in the 2020s (44.4%, decade still incomplete) achieved the highest decade-level win rates in the dataset.
+Juan Fangio in the 1950s (47.1% win rate) achieved the highest decade-level win rate in the dataset, narrowly ahead of Michael Schumacher in the 2000s (45.9%) and Max Verstappen in the 2020s (44.4%, decade still incomplete).
 
-The 1980s appear to be one of the most competitive eras. Alain Prost led the decade with a win rate of only 25.2%, the lowest among all decade leaders, suggesting that victories were shared among several elite drivers.
+The 1980s appear to have been one of the most competitive eras. Alain Prost led the decade with a win rate of only 25.2%, the lowest among all decade leaders, suggesting that victories were shared among several elite drivers.
 
-Lewis Hamilton is the only driver to appear in the top three across three different decades. However, win rate tends to favor shorter but highly successful careers or periods, as seen with Ayrton Senna in the 1990s and Kimi Antonelli in the 2020s.
+Lewis Hamilton is the only driver to appear in the top three across three different decades (2000s, 2010s, 2020s).
+
+Win rate favors short, strong careers: Ayrton Senna leads the 1990s with only 67 starts, ahead of Schumacher (128 starts). Small samples can also push newcomers into the top three, such as Andrea Kimi Antonelli in the 2020s (17.1% in 35 starts), which is why a minimum of 20 starts is applied.
+
+### Data Caveat
+
+Starts and wins are counted as distinct races rather than result rows, because in the early seasons drivers sometimes took over a teammate's car mid-race and appear in several rows for the same race.
 
 
 ## Q2 Findings

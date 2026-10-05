@@ -1,21 +1,25 @@
 USE f1;
 
 -- Q2: Most dominant Formula 1 constructors by decade
-
+--
 -- Definition of dominance:
 -- Win rate = race wins / races entered within a decade.
-
+--
 -- Methodology:
 -- 1. Group constructors by decade.
 -- 2. Count race wins.
 -- 3. Count distinct races entered.
 -- 4. Exclude constructors with fewer than 30 races.
 -- 5. Rank constructors within each decade by win rate.
-
+--
 -- Notes:
+-- - Wins and races are counted as distinct races rather than rows.
+-- - This avoids double-counting historical shared-car entries.
 -- - The 2020s are incomplete (2020-2026).
+-- - Wins and races are counted as distinct races rather than rows.
+-- - This avoids double-counting historical shared-car entries.
 -- - Win rate is calculated per race, not per car start,
---   because constructors typically enter multiple cars per race.
+-- - because constructors typically enter multiple cars per race.
 
 WITH constructor_stats AS (
     SELECT
@@ -25,10 +29,21 @@ WITH constructor_stats AS (
 
         COUNT(DISTINCT res.raceId) AS races,
 
-        SUM(res.positionOrder = 1) AS wins,
+        COUNT(
+            DISTINCT CASE
+                WHEN res.positionOrder = 1
+                THEN res.raceId
+            END
+        ) AS wins,
 
         ROUND(
-            100.0 * SUM(res.positionOrder = 1)
+            100.0 *
+            COUNT(
+                DISTINCT CASE
+                    WHEN res.positionOrder = 1
+                    THEN res.raceId
+                END
+            )
             / COUNT(DISTINCT res.raceId),
             2
         ) AS win_rate_pct
