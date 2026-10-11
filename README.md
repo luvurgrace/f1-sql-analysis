@@ -60,6 +60,20 @@ The CSV files are not included in this repository. Download them from the link a
 
 Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.md).
 
+### Q5: Position gainers
+![Q5](charts/q5_gain_vs_expected.png)
+
+- A naive ranking by positions gained (grid minus finish) is dominated by midfield and backmarker drivers of the 1970s-1990s, such as Marc Surer (+8.3 per race): they start far back and survive the attrition of their era, while front-runners have little room to gain.
+- Comparing each driver with the typical finish from the same grid slot in the same decade gives a very different top ten. Max Verstappen leads at +1.69 positions per race (211 classified finishes), ahead of Niki Lauda and Bruce McLaren (+1.26).
+- The top ten consists almost entirely of champions and front-running drivers, so this metric partly reflects car quality, not only overtaking skill.
+
+### Q6: Pit lane time since 2011
+![Q6](charts/q6_pit_lane_by_circuit.png)
+
+- Pit stop data starts in 2011. The median time in the pit lane has not shortened since then (about 23-24 s, entry to exit).
+- Means are distorted by red-flag stops (in 2021, a 220 s mean against a 24 s median), so medians are used.
+- Comparing the same circuits shows changes of less than 1.1 s at most tracks; the two biggest shifts (Albert Park, Silverstone) happened in a single season, which points to track changes rather than team performance.
+
 ## Data Notes
 
 - The 2026 season is incomplete (through the Hungarian Grand Prix, round 11); it is excluded or marked in year-by-year comparisons.
@@ -67,6 +81,8 @@ Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.
 - Some teams appear under several constructor names (e.g. Lotus-Climax, Lotus-Ford); they are not merged because identical names can refer to unrelated teams.
 - In 1997 Michael Schumacher is absent from the final standings (excluded after the Jerez collision), which inflates Villeneuve's margin.
 - The Indianapolis 500 counted as a World Championship round from 1950 to 1960 and is part of the dataset. Its 33-car grid skews "back of the grid" statistics in the 1950s; for example, all three 1950s wins from 11th or lower came at Indianapolis.
+- Position-gain metrics (Q5) count classified finishers only and exclude the Indianapolis 500 (a championship round in 1950-1960 with a 33-car grid).
+- 28 of 29 invalid pit stop records (under 10 s) come from the newly added 2026 season
 
 ## How to Reproduce
 

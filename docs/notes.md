@@ -87,3 +87,20 @@ Comparing each driver with the typical finish from the same grid slot in the sam
 ### Data Caveat
 
 Only classified finishers are counted, so the metric ignores retirements. The Indianapolis 500 and 9 races with ambiguous grid data are excluded. A driver needs at least 50 classified finishes, and grid slots with fewer than 20 finishers per decade are ignored.
+
+
+## Q6: Pit lane time since 2011
+
+![Q6 by circuit](../charts/q6_pit_lane_by_circuit.png)
+
+### Findings
+
+Pit stop data exists only from 2011, so this question covers 2011-2026 rather than the full history. The median time spent in the pit lane has not shortened: it stayed around 22.3-22.9 s in 2011-2013 and between 23.1 and 24.6 s since 2014.
+
+Means are misleading here. In 2021 the mean pit lane time was 220 s against a median of 24.3 s, because 13.8% of stops lasted more than a minute (red flags, repairs). The same happened in 2020, 2022, 2023 and 2024, which is why the median is used.
+
+Comparing the same circuits in 2011-2014 and 2022-2025 removes the effect of calendar changes. At 12 of 16 circuits the median changed by less than about 1.1 s: 11 circuits are slightly slower, 5 slightly faster. Two circuits stand out, and in both cases the change is a step in a single season rather than a gradual trend. At Albert Park the median fell from 22-24 s (2011-2019) to about 18 s from 2022; at Silverstone it rose from about 25 s (2011-2013) to about 29 s from 2014. This points to changes at the circuits rather than to team performance, although the data does not show the cause.
+
+### Data Caveat
+
+`duration` measures the whole time in the pit lane (entry to exit), not the stationary time of the tire change. Stops under 10 s (29 records, 28 of them in the newly added 2026 season) are excluded as data errors. 2026 is incomplete and 2020 was a shortened season. Red-flag stops can last many minutes and dominate single races: at Albert Park 2023, 49 of 65 stops lasted over a minute, which distorts even the median for that race.
