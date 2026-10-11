@@ -2,6 +2,11 @@
 
 SQL analysis of Formula 1 history (1950-2026) in MySQL 8: window functions, CTEs, views, and Python charts.
 
+## Did you know?
+
+- Since 1950, only 25 Grand Prix have been won from 11th place or lower on the grid. The biggest comeback in the dataset belongs to John Watson, who won the 1983 US Grand Prix West from 22nd.
+- Max Verstappen took both such wins of the 2020s (Belgium 2022 from 14th, São Paulo 2024 from 17th), and half of all of them since 2010.
+
 ## Dataset
 
 [Formula 1 World Championship (1950-2026)](https://github.com/Arths17/f1-dataset) by Atharv Ranjan, an extension of the Ergast database updated via the Jolpica API (CC0 license). 17 related tables: races, results, drivers, constructors, qualifying, pit stops, standings, and 2025-2026 extras (tire stints, weather, practice).
@@ -61,6 +66,7 @@ Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.
 - Early seasons contain shared cars (a driver taking over a teammate's car mid-race), so starts and wins are counted as distinct races rather than result rows.
 - Some teams appear under several constructor names (e.g. Lotus-Climax, Lotus-Ford); they are not merged because identical names can refer to unrelated teams.
 - In 1997 Michael Schumacher is absent from the final standings (excluded after the Jerez collision), which inflates Villeneuve's margin.
+- The Indianapolis 500 counted as a World Championship round from 1950 to 1960 and is part of the dataset. Its 33-car grid skews "back of the grid" statistics in the 1950s; for example, all three 1950s wins from 11th or lower came at Indianapolis.
 
 ## How to Reproduce
 

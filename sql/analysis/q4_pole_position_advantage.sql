@@ -103,3 +103,37 @@ ORDER BY
         'P4-P10',
         'P11+'
     );
+
+-- Highlight: Grand Prix won from P11 or lower
+-- Indianapolis 500 excluded because it used a 33-car grid and
+-- is not representative of modern Formula 1 race weekends.
+
+WITH ambiguous_poles AS (
+    SELECT raceId
+    FROM results
+    WHERE grid = 1
+    GROUP BY raceId
+    HAVING COUNT(*) > 1
+)
+
+SELECT
+    r.year,
+    r.name,
+    res.grid,
+    CONCAT(d.forename, ' ', d.surname) AS winner
+FROM results res
+JOIN races r
+    ON r.raceId = res.raceId
+JOIN drivers d
+    ON d.driverId = res.driverId
+WHERE res.positionOrder = 1
+  AND res.grid >= 11
+  AND res.grid > 0
+  AND r.name <> 'Indianapolis 500'
+  AND res.raceId NOT IN (
+      SELECT raceId
+      FROM ambiguous_poles
+  )
+ORDER BY
+    r.year,
+    res.grid DESC;

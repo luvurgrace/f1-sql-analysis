@@ -70,4 +70,20 @@ These figures show association, not cause. The fastest car typically takes pole 
 
 ### Data Caveat
 
-Nine early races (1951-1964) were excluded because several drivers are recorded on grid position 1 (shared cars). A few 1950s races also have shared wins, which can count one race win twice in the grid-group table. `grid` is the starting grid, which can differ from the qualifying result because of grid penalties. Pit-lane starts (`grid = 0`) are excluded.
+
+Nine early races (1951-1964) were excluded because several drivers are recorded on grid position 1 (shared cars). A few 1950s races also have shared wins, which can count one race win twice in the grid-group table. `grid` is the starting grid, which can differ from the qualifying result because of grid penalties. Pit-lane starts (`grid = 0`) are excluded. - The Indianapolis 500 counted as a World Championship round from 1950 to 1960 and is part of the dataset. Its 33-car grid skews "back of the grid" statistics in the 1950s; for example, all three 1950s wins from 11th or lower came at Indianapolis.
+
+
+## Q5: Position gainers
+
+![Q5](../charts/q5_gain_vs_expected.png)
+
+### Findings
+
+A naive ranking by positions gained (grid minus finish) is dominated by midfield and backmarker drivers of the 1970s-1990s, such as Marc Surer (+8.3 per race), because they start far back and survive the attrition of their era, while front-runners have little room to gain.
+
+Comparing each driver with the typical finish from the same grid slot in the same decade gives a very different top ten. Max Verstappen leads at +1.69 positions per race (211 classified finishes), ahead of Niki Lauda and Bruce McLaren (+1.26 each). The top ten consists almost entirely of champions and drivers of front-running teams, so this metric partly reflects car quality, not only overtaking skill.
+
+### Data Caveat
+
+Only classified finishers are counted, so the metric ignores retirements. The Indianapolis 500 and 9 races with ambiguous grid data are excluded. A driver needs at least 50 classified finishes, and grid slots with fewer than 20 finishers per decade are ignored.
