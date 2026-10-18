@@ -18,16 +18,16 @@ The CSV files are not included in this repository. Download them from the link a
 
 ## Research Questions
 
-| # | Question | Status |
-|---|---|---|
-| 1 | Most dominant drivers by decade | Done |
-| 2 | Constructor dominance by decade | Done |
-| 3 | Season champions and title margins | Done |
-| 4 | Impact of pole position | Done |
-| 5 | Position gainers | Done |
-| 6 | Pit stop evolution | Done |
-| 7 | Reliability trends | Planned |
-| 8 | Tire strategy effectiveness (2025-2026) | Planned |
+| # | Question | Status      |
+|---|---|-------------|
+| 1 | Most dominant drivers by decade | Done        |
+| 2 | Constructor dominance by decade | Done        |
+| 3 | Season champions and title margins | Done        |
+| 4 | Impact of pole position | Done        |
+| 5 | Position gainers | Done        |
+| 6 | Pit stop evolution | Done        |
+| 7 | Reliability trends | Done        |
+| 8 | Tire strategy effectiveness (2025-2026) | In progress |
 
 ## Key Findings
 
