@@ -1,0 +1,25 @@
+decade,place,cause,n,pct_of_entries
+1950,1,"Engine / Power Unit",216,13.9
+1950,2,Accident,86,5.5
+1950,3,Transmission,58,3.7
+1960,1,"Engine / Power Unit",219,11.6
+1960,2,Accident,118,6.3
+1960,3,Gearbox,88,4.7
+1970,1,"Engine / Power Unit",363,10.6
+1970,2,Accident,329,9.6
+1970,3,Suspension,117,3.4
+1980,1,"Engine / Power Unit",475,12.1
+1980,2,"Spun off",193,4.9
+1980,3,Accident,168,4.3
+1990,1,"Engine / Power Unit",423,10.9
+1990,2,"Spun off",379,9.8
+1990,3,Gearbox,251,6.5
+2000,1,"Engine / Power Unit",200,5.5
+2000,2,Collision,175,4.8
+2000,3,Accident,125,3.4
+2010,1,Collision,173,4.0
+2010,2,"Engine / Power Unit",105,2.5
+2010,3,Accident,99,2.3
+2020,1,Collision,63,2.2
+2020,2,"Engine / Power Unit",42,1.5
+2020,3,Accident,38,1.3

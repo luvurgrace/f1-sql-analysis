@@ -104,3 +104,25 @@ Comparing the same circuits in 2011-2014 and 2022-2025 removes the effect of cal
 ### Data Caveat
 
 `duration` measures the whole time in the pit lane (entry to exit), not the stationary time of the tire change. Stops under 10 s (29 records, 28 of them in the newly added 2026 season) are excluded as data errors. 2026 is incomplete and 2020 was a shortened season. Red-flag stops can last many minutes and dominate single races: at Albert Park 2023, 49 of 65 stops lasted over a minute, which distorts even the median for that race.
+
+
+## Q7: Reliability
+
+![Q7](../charts/q7_reliability_by_decade.png)
+![Q7 engine](../charts/q7_engine_failures_by_decade.png)
+
+### Findings
+
+Until the 1990s about half of all car entries failed to finish (48-50% in the 1950s-1970s), peaking at 55.9% in the 1980s. The rate then fell steadily: 31.8% in the 2000s, 19.4% in the 2010s and 14.2% in the 2020s (decade incomplete).
+
+Technical failures drove most of that decline, from about 40% of entries in the 1950s, 1960s and 1980s to 10.7% in the 2010s and 4.8% in the 2020s. The engine was the single most common cause of retirement in every decade up to the 2000s (13.9% of entries in the 1950s, 5.5% in the 2000s) and fell to 2.5% in the 2010s and 1.5% in the 2020s. Since the 2010s collisions are the most common cause of retirement (4.0% of entries).
+
+Accidents peaked in the 1990s at 17.4% of entries (9.8% of them "spun off") and have fallen since.
+
+### Data Caveat
+
+Reliability is measured as the share of car entries that did not end with a "Finished" status (finished or lapped); entries that never started (did not qualify, withdrew) and the Indianapolis 500 are excluded. Entries are result rows, so a shared car in the 1950s counts as two entries.
+
+Causes were grouped manually from the status table (Technical, Accident, Other). "Other" contains unknown causes (Retired, Not classified), disqualifications and driver-related reasons, so it says nothing about car reliability.
+
+In 2025-2026 many retirements are recorded as plain "Retired" without a cause (95 entries, about 3 percentage points of all 2020s entries). The 2020s total failure rate is unaffected, but the technical/accident split for that decade is uncertain, and the true technical share is probably higher than 4.8%.

@@ -38,3 +38,49 @@ SELECT
 FROM driver_standings ds
 JOIN final_race fr
     ON fr.raceId = ds.raceId;
+
+
+
+-- One row per car entry that actually started a race (Indianapolis 500 excluded),
+-- with the finishing status grouped into a category.
+-- Technical = mechanical or car failure; Accident = crashes and collisions;
+-- Other = unknown cause, disqualifications and driver-related reasons.
+CREATE OR REPLACE VIEW reliability_entries AS
+SELECT
+    r.year,
+    FLOOR(r.year / 10) * 10 AS decade,
+    res.raceId,
+    s.status,
+    CASE
+        WHEN s.status = 'Finished'
+          OR s.status LIKE '+%'
+          OR s.status = 'Lapped' THEN 'Finished'
+        WHEN s.status IN ('Accident', 'Collision', 'Spun off', 'Collision damage',
+                          'Fatal accident')
+            THEN 'Accident'
+        WHEN s.status IN (
+            'Engine', 'Gearbox', 'Suspension', 'Transmission', 'Electrical', 'Brakes',
+            'Clutch', 'Fuel system', 'Turbo', 'Hydraulics', 'Overheating', 'Ignition',
+            'Oil leak', 'Throttle', 'Halfshaft', 'Wheel', 'Oil pressure', 'Fuel pump',
+            'Differential', 'Tyre', 'Handling', 'Fuel leak', 'Steering', 'Radiator',
+            'Power Unit', 'Puncture', 'Wheel bearing', 'Injection', 'Fuel pressure',
+            'Water leak', 'Alternator', 'Exhaust', 'Mechanical', 'Chassis', 'Magneto',
+            'Driveshaft', 'Out of fuel',
+            'Battery', 'Axle', 'Heat shield fire', 'Power loss', 'Distributor',
+            'Oil pump', 'Electronics', 'Oil pipe', 'Broken wing', 'Rear wing',
+            'Vibrations', 'Wheel nut', 'Water pressure', 'Water pump', 'Front wing',
+            'ERS', 'Technical', 'Undertray', 'Fuel', 'Pneumatics', 'Fire',
+            'Wheel rim', 'Spark plugs', 'Water pipe', 'Fuel pipe', 'Drivetrain',
+            'Fuel rig', 'Track rod', 'Supercharger', 'Engine fire',
+            'Tyre puncture', 'Oil line', 'Launch control', 'Driver Seat'
+        ) THEN 'Technical'
+        ELSE 'Other'
+    END AS category
+FROM results res
+JOIN races r
+    ON r.raceId = res.raceId
+JOIN status s
+    ON s.statusId = res.statusId
+WHERE r.name <> 'Indianapolis 500'
+  AND s.status NOT IN ('Did not qualify', 'Did not prequalify', 'Withdrew',
+                       'Did not start', '107% Rule');

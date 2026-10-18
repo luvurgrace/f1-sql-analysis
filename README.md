@@ -6,6 +6,7 @@ SQL analysis of Formula 1 history (1950-2026) in MySQL 8: window functions, CTEs
 
 - Since 1950, only 25 Grand Prix have been won from 11th place or lower on the grid. The biggest comeback in the dataset belongs to John Watson, who won the 1983 US Grand Prix West from 22nd.
 - Max Verstappen took both such wins of the 2020s (Belgium 2022 from 14th, São Paulo 2024 from 17th), and half of all of them since 2010.
+- In the 1980s more than half of all cars (56%) failed to finish a race; in the 2020s it is about one in seven.
 
 ## Dataset
 
@@ -23,8 +24,8 @@ The CSV files are not included in this repository. Download them from the link a
 | 2 | Constructor dominance by decade | Done |
 | 3 | Season champions and title margins | Done |
 | 4 | Impact of pole position | Done |
-| 5 | Position gainers | In progress |
-| 6 | Pit stop evolution | Planned |
+| 5 | Position gainers | Done |
+| 6 | Pit stop evolution | Done |
 | 7 | Reliability trends | Planned |
 | 8 | Tire strategy effectiveness (2025-2026) | Planned |
 
@@ -73,6 +74,13 @@ Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.
 - Pit stop data starts in 2011. The median time in the pit lane has not shortened since then (about 23-24 s, entry to exit).
 - Means are distorted by red-flag stops (in 2021, a 220 s mean against a 24 s median), so medians are used.
 - Comparing the same circuits shows changes of less than 1.1 s at most tracks; the two biggest shifts (Albert Park, Silverstone) happened in a single season, which points to track changes rather than team performance.
+
+### Q7: Reliability
+![Q7](charts/q7_reliability_by_decade.png)
+
+- Until the 1990s about half of all cars failed to finish a race (peak: 56% in the 1980s); in the 2020s it is about 14%.
+- The engine was the most common cause of retirement in every decade up to the 2000s and has almost disappeared since (13.9% of entries in the 1950s, 1.5% in the 2020s).
+- Caveat: in 2025-2026 many retirements are recorded without a cause, so the cause split for the 2020s is uncertain.
 
 ## Data Notes
 
