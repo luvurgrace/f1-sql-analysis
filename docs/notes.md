@@ -2,6 +2,8 @@
 
 Full findings and data caveats for each research question. A short version is in the [README](../README.md).
 
+
+
 ## Q1 Findings
 
 Juan Fangio in the 1950s (47.1% win rate) achieved the highest decade-level win rate in the dataset, narrowly ahead of Michael Schumacher in the 2000s (45.9%) and Max Verstappen in the 2020s (44.4%, decade still incomplete).
