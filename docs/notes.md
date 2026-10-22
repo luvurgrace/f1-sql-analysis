@@ -113,7 +113,7 @@ Comparing the same circuits in 2011-2014 and 2022-2025 removes the effect of cal
 
 ### Findings
 
-Until the 1990s about half of all car entries failed to finish (48-50% in the 1950s-1970s), peaking at 55.9% in the 1980s. The rate then fell steadily: 31.8% in the 2000s, 19.4% in the 2010s and 14.2% in the 2020s (decade incomplete).
+About half of all car entries failed to finish in every decade through the 1990s (48-56%), peaking at 55.9% in the 1980s. The rate then fell steadily: 31.8% in the 2000s, 19.4% in the 2010s and 14.2% in the 2020s (decade incomplete).
 
 Technical failures drove most of that decline, from about 40% of entries in the 1950s, 1960s and 1980s to 10.7% in the 2010s and 4.8% in the 2020s. The engine was the single most common cause of retirement in every decade up to the 2000s (13.9% of entries in the 1950s, 5.5% in the 2000s) and fell to 2.5% in the 2010s and 1.5% in the 2020s. Since the 2010s collisions are the most common cause of retirement (4.0% of entries).
 
@@ -126,3 +126,20 @@ Reliability is measured as the share of car entries that did not end with a "Fin
 Causes were grouped manually from the status table (Technical, Accident, Other). "Other" contains unknown causes (Retired, Not classified), disqualifications and driver-related reasons, so it says nothing about car reliability.
 
 In 2025-2026 many retirements are recorded as plain "Retired" without a cause (95 entries, about 3 percentage points of all 2020s entries). The 2020s total failure rate is unaffected, but the technical/accident split for that decade is uncertain, and the true technical share is probably higher than 4.8%.
+
+
+## Q8: Tyre strategy and race outcome (2025-2026)
+
+![Q8](../charts/q8_teammate_comparison.png)
+
+### Findings
+
+Only 27 dry races of 2025-2026 are available (481 classified finishers), so this section is descriptive, not conclusive. Most drivers made one stop (210 entries) or two (205); three or more stops were rare (66). One-stop drivers finished slightly higher on average (8.9 vs 9.9 for two stops), but they also started higher (10.0 vs 11.0), so the gap mostly reflects who chooses which strategy.
+
+The most common strategy was Medium-Hard (131 entries). Strategies with large position gains, such as Hard-Medium (+3.1 per race), belong to drivers who started far back (average grid 13.9), so the gain reflects the starting position rather than the strategy.
+
+Comparing teammates in the same race removes the effect of the car. In 35 of 54 pairs (65%) the driver with fewer stops finished ahead; for the most common case, one stop against two, it was 19 of 28 (68%). With this sample the difference from a coin flip is small (95% interval for all pairs: 51-76%), and a pair with extra stops often had a reason, such as damage or a safety car.
+
+### Data Caveat
+
+Wet races (rain recorded, or intermediate/wet tyres used by anyone) and entries with an unknown compound are excluded. Only classified finishers are counted, so retirements are ignored. Stops are counted as stints minus one, which also includes tyre changes under red flags. Strategy is not randomly assigned.

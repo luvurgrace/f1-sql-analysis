@@ -8,6 +8,8 @@ SQL analysis of Formula 1 history (1950-2026) in MySQL 8: window functions, CTEs
 - Max Verstappen took both such wins of the 2020s (Belgium 2022 from 14th, São Paulo 2024 from 17th), and half of all of them since 2010.
 - In the 1980s more than half of all cars (56%) failed to finish a race; in the 2020s it is about one in seven.
 
+The queries behind these facts are in `sql/analysis/q4_pole_position_advantage.sql` (comebacks) and `sql/analysis/q7_reliability_analysis.sql` (reliability).
+
 ## Dataset
 
 [Formula 1 World Championship (1950-2026)](https://github.com/Arths17/f1-dataset) by Atharv Ranjan, an extension of the Ergast database updated via the Jolpica API (CC0 license). 17 related tables: races, results, drivers, constructors, qualifying, pit stops, standings, and 2025-2026 extras (tire stints, weather, practice).
@@ -18,16 +20,16 @@ The CSV files are not included in this repository. Download them from the link a
 
 ## Research Questions
 
-| # | Question | Status      |
-|---|---|-------------|
-| 1 | Most dominant drivers by decade | Done        |
-| 2 | Constructor dominance by decade | Done        |
-| 3 | Season champions and title margins | Done        |
-| 4 | Impact of pole position | Done        |
-| 5 | Position gainers | Done        |
-| 6 | Pit stop evolution | Done        |
-| 7 | Reliability trends | Done        |
-| 8 | Tire strategy effectiveness (2025-2026) | In progress |
+| # | Question | Status |
+|---|---|---|
+| 1 | Most dominant drivers by decade | Done |
+| 2 | Constructor dominance by decade | Done |
+| 3 | Season champions and title margins | Done |
+| 4 | Impact of pole position | Done |
+| 5 | Position gainers | Done |
+| 6 | Pit stop evolution | Done |
+| 7 | Reliability trends | Done |
+| 8 | Tire strategy and race outcome (2025-2026) | Done |
 
 ## Key Findings
 
@@ -59,8 +61,6 @@ The CSV files are not included in this repository. Download them from the link a
 - Starters from P11 or lower never won more than 0.33% of races in any decade.
 - These figures show association, not cause: dominant cars tend to take both pole and the win.
 
-Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.md).
-
 ### Q5: Position gainers
 ![Q5](charts/q5_gain_vs_expected.png)
 
@@ -77,10 +77,19 @@ Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.
 
 ### Q7: Reliability
 ![Q7](charts/q7_reliability_by_decade.png)
+![Q7 engine](charts/q7_engine_failures_by_decade.png)
 
-- Until the 1990s about half of all cars failed to finish a race (peak: 56% in the 1980s); in the 2020s it is about 14%.
+- Through the 1990s about half of all cars failed to finish a race (peak: 56% in the 1980s); in the 2020s it is about 14%.
 - The engine was the most common cause of retirement in every decade up to the 2000s and has almost disappeared since (13.9% of entries in the 1950s, 1.5% in the 2020s).
 - Caveat: in 2025-2026 many retirements are recorded without a cause, so the cause split for the 2020s is uncertain.
+
+### Q8: Tire strategy and race outcome (2025-2026)
+![Q8](charts/q8_teammate_comparison.png)
+
+- In 35 of 54 teammate pairs in dry races, the driver who made fewer pit stops finished ahead, but the sample is small (27 dry races) and stop counts partly reflect race events.
+- Simple comparisons by number of stops or tire sequence mostly reflect who starts where, not which strategy is better.
+
+Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.md).
 
 ## Data Notes
 
@@ -88,9 +97,11 @@ Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.
 - Early seasons contain shared cars (a driver taking over a teammate's car mid-race), so starts and wins are counted as distinct races rather than result rows.
 - Some teams appear under several constructor names (e.g. Lotus-Climax, Lotus-Ford); they are not merged because identical names can refer to unrelated teams.
 - In 1997 Michael Schumacher is absent from the final standings (excluded after the Jerez collision), which inflates Villeneuve's margin.
-- The Indianapolis 500 counted as a World Championship round from 1950 to 1960 and is part of the dataset. Its 33-car grid skews "back of the grid" statistics in the 1950s; for example, all three 1950s wins from 11th or lower came at Indianapolis.
-- Position-gain metrics (Q5) count classified finishers only and exclude the Indianapolis 500 (a championship round in 1950-1960 with a 33-car grid).
-- 28 of 29 invalid pit stop records (under 10 s) come from the newly added 2026 season
+- The Indianapolis 500 counted as a World Championship round from 1950 to 1960 and is part of the dataset. Its 33-car grid skews "back of the grid" statistics in the 1950s (all three 1950s wins from 11th or lower came at Indianapolis), so it is excluded from Q5, Q7 and the comeback list.
+- Position-gain metrics (Q5) count classified finishers only.
+- 28 of 29 invalid pit stop records (under 10 s) come from the newly added 2026 season and are excluded.
+- Q7 groups finishing statuses into Technical, Accident and Other manually. "Other" holds unknown causes, disqualifications and driver-related reasons; in 2025-2026 many retirements are recorded only as "Retired".
+- Tire stints, weather and practice data exist only for 2025-2026, so Q8 covers 27 dry races; wet races and entries with an unknown tire compound are excluded.
 
 ## How to Reproduce
 
@@ -99,7 +110,7 @@ Full findings and caveats for each question are in [`docs/notes.md`](docs/notes.
 3. Copy `.env.example` to `.env` and fill in your MySQL credentials.
 4. Create the database: run `sql/00_create_database.sql` in MySQL (8.0+ required for window functions and CTEs).
 5. Load the data: `python scripts/load_data.py`
-6. Add keys and views: run `sql/01_primary_keys.sql`, `sql/02_foreign_keys.sql`, `sql/03_views.sql` in that order.
+6. Add keys and views: run `sql/01_primary_keys.sql`, `sql/02_foreign_keys.sql`, `sql/03_views.sql` in that order. The views (`season_final_standings`, `reliability_entries`, `dry_race_strategies`) are required by Q3, Q7 and Q8.
 7. Run the queries from `sql/analysis/`. Charts are built in `notebooks/analysis.ipynb`.
 
 ## Project Structure
@@ -118,4 +129,6 @@ f1-analysis/
 
 ## Tech Stack
 
-MySQL 8, SQL (CTEs, window functions, views), Python, pandas, SQLAlchemy, matplotlib, Jupyter.
+MySQL 8, Python, pandas, SQLAlchemy, matplotlib, Jupyter.
+
+SQL techniques used: CTEs, window functions (`ROW_NUMBER`, `LEAD`, rolling medians), views, self-joins, conditional aggregation, `GROUP_CONCAT`.

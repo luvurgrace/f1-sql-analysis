@@ -1,0 +1,8 @@
+pair_type,pairs,fewer_stops_ahead,fewer_ahead_pct
+"1 vs 2 stops",28,19,67.9
+"2 vs 3 stops",17,9,52.9
+"1 vs 3 stops",4,3,75.0
+"4 vs 5 stops",2,2,100.0
+"2 vs 4 stops",1,1,100.0
+"1 vs 6 stops",1,1,100.0
+"6 vs 7 stops",1,0,0.0
