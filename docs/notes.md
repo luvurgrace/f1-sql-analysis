@@ -1,3 +1,7 @@
+# Detailed findings
+
+Full findings and data caveats for each research question. A short version is in the [README](../README.md).
+
 ## Q1 Findings
 
 Juan Fangio in the 1950s (47.1% win rate) achieved the highest decade-level win rate in the dataset, narrowly ahead of Michael Schumacher in the 2000s (45.9%) and Max Verstappen in the 2020s (44.4%, decade still incomplete).
@@ -13,6 +17,7 @@ Win rate favors short, strong careers: Ayrton Senna leads the 1990s with only 67
 Starts and wins are counted as distinct races rather than result rows, because in the early seasons drivers sometimes took over a teammate's car mid-race and appear in several rows for the same race.
 
 
+
 ## Q2 Findings
 
 Ferrari in the 2000s (48.9%), Red Bull in the 2020s (47.9%, decade incomplete) and Mercedes in the 2010s (47.0%) are the most dominant constructor-decades.
@@ -20,6 +25,7 @@ Ferrari in the 2000s (48.9%), Red Bull in the 2020s (47.9%, decade incomplete) a
 The 1970s were the most competitive era: Team Lotus (26.3%) and Ferrari (26.2%) are effectively tied, and Ferrari actually won more races (37 vs 35).
 
 Caveat: the dataset records some teams under several constructor names (e.g. Lotus-Climax and Lotus-Ford in the 1960s), so their results are split across entries, and I deliberately did not merge them because names like "Lotus" and "Renault" refer to unrelated teams in different eras.
+
 
 
 ## Q3 Findings
@@ -39,6 +45,7 @@ Margins are computed from the final standings in the dataset.
 In 1997, Michael Schumacher was excluded from the championship after the Jerez collision, so his points do not appear in the final standings. As a result, Jacques Villeneuve's championship margin appears much larger than the actual title battle.
 
 Point systems and historical scoring rules also changed over time, which is why margins are normalized as a percentage of the champion's points.
+
 
 
 ## Q4: Pole position advantage
@@ -66,12 +73,14 @@ Drivers starting P2-P3 won 15-21% of their races in every decade, so the edge of
 
 Winning from the middle of the grid was most common in the 1960s-1980s: P4-P10 starters won 3.5-5.2% of races, compared with roughly 1-2% in the 1950s and since the 1990s. Starters from P11 or lower never won more than 0.33% of races in any decade.
 
-These figures show association, not cause. The fastest car typically takes pole and also wins, so a higher pole win rate may reflect dominant teams (e.g. Mercedes, Red Bull) rather than a stronger effect of the pole position itself.
+These figures show association, not cause. The fastest car typically takes pole and also wins, so a higher pole win rate may reflect dominant teams (e.g. Mercedes, Red Bull) rather than a stronger effect of the pole position itself. Starters from P11 or lower never won more than 0.33% of races in any decade; the three such wins of the 1950s all came at the Indianapolis 500, so at regular Grand Prix the figure for that decade is zero.
 
 ### Data Caveat
 
+Nine early races (1951-1964) were excluded because several drivers are recorded on grid position 1 (shared cars). A few 1950s races also have shared wins, which can count one race win twice in the grid-group table. `grid` is the starting grid, which can differ from the qualifying result because of grid penalties. Pit-lane starts (`grid = 0`) are excluded.
 
-Nine early races (1951-1964) were excluded because several drivers are recorded on grid position 1 (shared cars). A few 1950s races also have shared wins, which can count one race win twice in the grid-group table. `grid` is the starting grid, which can differ from the qualifying result because of grid penalties. Pit-lane starts (`grid = 0`) are excluded. - The Indianapolis 500 counted as a World Championship round from 1950 to 1960 and is part of the dataset. Its 33-car grid skews "back of the grid" statistics in the 1950s; for example, all three 1950s wins from 11th or lower came at Indianapolis.
+The Indianapolis 500, a championship round in 1950-1960 with a 33-car grid, is not excluded from Q4. All three 1950s wins from P11 or lower came there.
+
 
 
 ## Q5: Position gainers
@@ -89,6 +98,7 @@ Comparing each driver with the typical finish from the same grid slot in the sam
 Only classified finishers are counted, so the metric ignores retirements. The Indianapolis 500 and 9 races with ambiguous grid data are excluded. A driver needs at least 50 classified finishes, and grid slots with fewer than 20 finishers per decade are ignored.
 
 
+
 ## Q6: Pit lane time since 2011
 
 ![Q6 by circuit](../charts/q6_pit_lane_by_circuit.png)
@@ -99,11 +109,12 @@ Pit stop data exists only from 2011, so this question covers 2011-2026 rather th
 
 Means are misleading here. In 2021 the mean pit lane time was 220 s against a median of 24.3 s, because 13.8% of stops lasted more than a minute (red flags, repairs). The same happened in 2020, 2022, 2023 and 2024, which is why the median is used.
 
-Comparing the same circuits in 2011-2014 and 2022-2025 removes the effect of calendar changes. At 12 of 16 circuits the median changed by less than about 1.1 s: 11 circuits are slightly slower, 5 slightly faster. Two circuits stand out, and in both cases the change is a step in a single season rather than a gradual trend. At Albert Park the median fell from 22-24 s (2011-2019) to about 18 s from 2022; at Silverstone it rose from about 25 s (2011-2013) to about 29 s from 2014. This points to changes at the circuits rather than to team performance, although the data does not show the cause.
+Comparing the same circuits in 2011-2014 and 2022-2025 removes the effect of calendar changes. At 12 of 16 circuits the median changed by less than about 1.1 s. Across all 16 circuits, 11 are slower and 5 faster, with a typical change of about +0.5 s.
 
 ### Data Caveat
 
 `duration` measures the whole time in the pit lane (entry to exit), not the stationary time of the tire change. Stops under 10 s (29 records, 28 of them in the newly added 2026 season) are excluded as data errors. 2026 is incomplete and 2020 was a shortened season. Red-flag stops can last many minutes and dominate single races: at Albert Park 2023, 49 of 65 stops lasted over a minute, which distorts even the median for that race.
+
 
 
 ## Q7: Reliability
@@ -117,7 +128,7 @@ About half of all car entries failed to finish in every decade through the 1990s
 
 Technical failures drove most of that decline, from about 40% of entries in the 1950s, 1960s and 1980s to 10.7% in the 2010s and 4.8% in the 2020s. The engine was the single most common cause of retirement in every decade up to the 2000s (13.9% of entries in the 1950s, 5.5% in the 2000s) and fell to 2.5% in the 2010s and 1.5% in the 2020s. Since the 2010s collisions are the most common cause of retirement (4.0% of entries).
 
-Accidents peaked in the 1990s at 17.4% of entries (9.8% of them "spun off") and have fallen since.
+Accidents peaked in the 1990s at 17.4% of entries (spins alone: 9.8%) and have fallen since.
 
 ### Data Caveat
 
@@ -128,7 +139,8 @@ Causes were grouped manually from the status table (Technical, Accident, Other).
 In 2025-2026 many retirements are recorded as plain "Retired" without a cause (95 entries, about 3 percentage points of all 2020s entries). The 2020s total failure rate is unaffected, but the technical/accident split for that decade is uncertain, and the true technical share is probably higher than 4.8%.
 
 
-## Q8: Tyre strategy and race outcome (2025-2026)
+
+## Q8: Tire strategy and race outcome (2025-2026)
 
 ![Q8](../charts/q8_teammate_comparison.png)
 
@@ -142,4 +154,4 @@ Comparing teammates in the same race removes the effect of the car. In 35 of 54 
 
 ### Data Caveat
 
-Wet races (rain recorded, or intermediate/wet tyres used by anyone) and entries with an unknown compound are excluded. Only classified finishers are counted, so retirements are ignored. Stops are counted as stints minus one, which also includes tyre changes under red flags. Strategy is not randomly assigned.
+Wet races (rain recorded, or intermediate/wet tires used by anyone) and entries with an unknown compound are excluded. Only classified finishers are counted, so retirements are ignored. Stops are counted as stints minus one, which also includes tire changes under red flags. Strategy is not randomly assigned.
